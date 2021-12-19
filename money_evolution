@@ -1,0 +1,41 @@
+let data = new Date()
+let dataFormatada = ((data.getDate()) + "/" + (data.getMonth() + 1) + "/" + data.getFullYear());
+
+var ss = SpreadsheetApp.getActiveSpreadsheet();
+
+var acomp = ss.getSheetByName("Acompanhamento");
+var cart = ss.getSheetByName("Carteira");
+
+var ultLinhaAcomp = acomp.getLastRow();
+var ultLinhaCart = cart.getLastRow();
+
+// Loop para somar investimento inicial
+
+var columnIncial = 4
+var investInicial = cart.getRange(2,columnIncial).getValue();
+var i = 3
+  while (i < ultLinhaCart + 1) {
+
+    investInicial = investInicial + cart.getRange(i,columnIncial).getValue();
+    i ++
+
+  }
+
+var columnIncial = 6
+var investAtual = cart.getRange(2,columnIncial).getValue();
+var i = 3
+  while (i < ultLinhaCart + 1) {
+
+    investAtual = investAtual + cart.getRange(i,columnIncial).getValue();
+    i ++
+
+  }
+
+
+function patAtt() {
+
+  acomp.getRange(ultLinhaAcomp + 1, 1).setValue(dataFormatada).setNumberFormat('dd/MM/yyyy');
+  acomp.getRange(ultLinhaAcomp + 1, 2).setValue(Number(investInicial));
+  acomp.getRange(ultLinhaAcomp + 1, 3).setValue(Number(investAtual));
+
+}
