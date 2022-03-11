@@ -2,10 +2,13 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.14.0/devicon.min.css">
  </header>
 
-## Oie, meu nome é Felipe Dados!
+## Opa, meu nome é Felipe Dados!
 
-- 👀 I’m interested in DataScience and Machine Learning using Python. 
-- 🌱 I’m currently learning Classical Computer Vision using Numpy and OpenCV2.
+### Atualmente sou Dev. Junior em uma equipe de Sustentação. 
+
+- Tenho muito interesse em Ciência de Dados, Criptomoedas, Análise e Desenvolvimento Web.
+- Conheço sobre: Python, Excel, ferramentas de visualização, estatística.
+- Quero conhecer sobre: Angular, DevOps, SQL and NoSQL, C#, API Rest, Node.js... dev rs.
 
 #### Tecnologias:
 
