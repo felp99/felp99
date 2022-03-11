@@ -1,15 +1,18 @@
-#pip install streamlit 
-#pip install pandas numpy matplotlib.pyplot ploty
+#pip install streamlit
 #pip install yfinance
+#pip install plotly
+#pip install pandas numpy json datetime
 
 import streamlit as st
-import pandas as pd
-import yfinance as yf
-import numpy as np
-import matplotlib.pyplot as plt
-import json
+import pandas as pd 
+import numpy as np 
 import plotly.express as px
+import datetime
+import json
+import yfinance as yf
 
+
+# Lendo o arquivo Json
 with open('data.json', 'r') as _json:
     data_string = _json.read()
 
@@ -17,45 +20,42 @@ obj = json.loads(data_string)
 
 crypto_names = obj["crypto_names"]
 crypto_symbols = obj["crypto_symbols"]
-currencys = obj["currencys"]
 
-interval = '1d'
-period = '2y'
-
+#Criando o dicionário de nome e símbolo
 crypto_dict = dict(zip(crypto_names, crypto_symbols))
 
-crypto_selected = st.selectbox(label = 'Selecione sua criptomoeda:',
+crypto_selected = st.selectbox(label = 'Selecione sua cripto:', 
                                options = crypto_dict.keys())
 
+#Criar variáveis de ambiente
+today_date = datetime.datetime.now()
+delta_date = datetime.timedelta(days=360)
 
-# st.write(f'A crypto selecionada foi: **{crypto_selected}**')
-
-_symbol = crypto_dict[crypto_selected]+ '-USD'
-
-Ticker = yf.Ticker(_symbol)
-
-df = Ticker.history(interval=interval, period=period)
-
+#Criar duas colunas
 col1, col2 = st.columns(2)
 
+#Selecionando a data de início
 with col1:
-    columns_selected = st.multiselect(label = 'Selecione as colunas do gráfico:',
-                                    options = df.columns, 
-                                    default=['Close'])
 
+    start_date = st.date_input(label = 'Selecione a data de ínicio:', 
+                               value = today_date - delta_date)
+
+#Selecionando a data final
 with col2:
-    change_coin = st.selectbox(label = 'Selecione seu câmbio:',
-                                   options = currencys)
 
-change_symbol = 'USD' + change_coin[:3] + '=X'
+    final_date = st.date_input(label = 'Selecione a data final:', 
+                               value = today_date)
 
-change = yf.Ticker(change_symbol).history(interval=interval, period=period)['Close']
+#Chamando o símbolo no yfinance
+_symbol = crypto_dict[crypto_selected] + '-USD'
 
-# st.write(change)
+df = yf.Ticker(_symbol).history(interval='1d', 
+                                start=start_date, 
+                                end=final_date)
 
-fig = px.line(df,
-              x = df.index,
-              y = columns_selected,
-              title = f'Valores de {crypto_selected}')
+st.title(f'Valores de {crypto_selected}')
+fig = px.line(df, 
+              x = df.index, 
+              y = 'Close')
 
 st.plotly_chart(fig)
