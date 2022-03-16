@@ -53,16 +53,15 @@ df = yf.Ticker(_symbol).history(interval='1d',
                                 start=start_date, 
                                 end=final_date)
 
-# st.title(f'Valores de {crypto_selected}')
+st.title(f'Valores de {crypto_selected}')
 fig = px.line(df, 
               x = df.index, 
               y = 'Close')
 
 # st.plotly_chart(fig)
 
-### AULA 2
+#AULA 2 --------------------------------
 
-import pandas as pd
 from fbprophet import Prophet
 
 df_prophet = pd.DataFrame()
@@ -72,14 +71,16 @@ df_cut = df.loc[start_date:final_date]['Close']
 df_prophet['ds'] = df_cut.index
 df_prophet['y'] = df_cut.values
 
-prevision_days = st.slider(label = 'Selecione o número de dias para previsão:', 
-                           value = 20, 
-                           min_value = 0,
-                           max_value = 100)
+m = Prophet()
 
-m = Prophet(yearly_seasonality=True,
-            daily_seasonality=True)
 m.fit(df_prophet)
+
+prevision_days = st.slider(label='Quantidade de dias para previsão:', 
+                           value = 100, 
+                           min_value=0, 
+                           max_value=1000)
+
+prevision_date = datetime.timedelta(days=prevision_days)
 
 future = m.make_future_dataframe(periods=prevision_days)
 future.tail()
@@ -88,11 +89,12 @@ forecast = m.predict(future)
 forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']].tail()
 
 df_to_plot = pd.DataFrame(index = forecast['ds'])
-
 df_to_plot['trend_prevision'] = forecast['yhat'].values
 
 df_to_plot['close_price'] = np.nan
-df_to_plot['close_price'].loc[start_date:final_date] = df_cut.values
+df_to_plot['close_price'].loc[start_date:final_date] = df_cut
 
-prevision = px.line(df_to_plot)
-st.plotly_chart(prevision)
+
+
+
+df_to_plot

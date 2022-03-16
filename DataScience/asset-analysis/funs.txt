@@ -1,0 +1,38 @@
+# df_total_asset = pd.DataFrame()
+# def into_df(ticker, asset, start_date, index):
+    
+#     if asset == 'Ações':
+#         ticker = ticker + '.SA'
+#     elif asset == 'Cripto' or asset == 'DeFi' or asset == 'Token':
+#         ticker = ticker + '-USD'
+
+#     partial_df = yf.Ticker(ticker).history(start = start_date)
+    
+    
+#     return partial_df['Close']
+
+# result = df_values.apply(lambda df:into_df(df['Símbolo'], df['Tipo'], df['Data'], df.index), axis=1)
+
+# for i in range(len(df_values)):
+#     _line = df_values.iloc[i, :]
+#     str_date = _line['Data'].strftime("%Y-%m-%d")
+
+#     if _line['Tipo'] == 'Ações':
+        
+#         ticker = _line['Símbolo'] + '.SA'
+#         close_price = yf.Ticker(ticker).history(start = str_date)['Close'][0]
+        
+#     elif _line['Tipo'] == 'Cripto' or _line['Tipo'] == 'DeFi' or _line['Tipo'] == 'Token':
+        
+#         dolar_value = yf.Ticker('BRL=X').history(start = str_date)['Close'][0]
+#         close_price = yf.Ticker(ticker).history(start = str_date)['Close'][0]
+#         print(close_price)
+
+#         close_price = dolar_value * close_price
+    
+#         ticker = _line['Símbolo'] + '-USD'
+        
+#     else:
+#         pass
+    
+#     df_values.loc[i, 'Preço Médio'] = close_price
