@@ -4,4 +4,4 @@ key.txt
 
 #Arquivos de ações
 estrategia-intraday/data
-**/.ipynb_checkpoints
+.ipynb_checkpoints
