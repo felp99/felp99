@@ -1,7 +1,9 @@
 # 💫 About Me:
 👨🏻‍💻 Desenvolvedor Fullstack<br>
 
-[![wakatime](https://wakatime.com/badge/user/2bc341df-8e1a-4b58-96cc-10ef1ac92145.svg)](https://wakatime.com/@2bc341df-8e1a-4b58-96cc-10ef1ac92145)
+# ⏳ Coding Time:
+[![wakatime](https://wakatime.com/badge/user/2bc341df-8e1a-4b58-96cc-10ef1ac92145.svg)](https://wakatime.com/@2bc341df-8e1a-4b58-96cc-10ef1ac92145)<br>
+![](https://wakatime.com/share/@felp99/0c55b372-6c01-44dd-92f0-812fcebcc085.svg)
 
 ## 🌐 Socials:
 [![Facebook](https://img.shields.io/badge/Facebook-%231877F2.svg?logo=Facebook&logoColor=white)](https://facebook.com/felipelobato99) [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&logoColor=white)](https://instagram.com/felp99) [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/felipelobato99) 
